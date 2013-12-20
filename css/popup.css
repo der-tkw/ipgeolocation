@@ -1,0 +1,33 @@
+body, table {
+	font: 90% Arial, sans-serif;
+}
+
+td {
+    width: 1px;
+    min-width: 75px;
+    white-space: nowrap;
+}
+
+img {
+	vertical-align: middle;
+}
+
+h1 { 
+	font-size: 115%;
+    white-space: nowrap;
+}
+
+h1 img {
+	margin: 1px 5px 0 1px;
+	border: 0px;
+}
+
+#map img {
+	margin-top: 10px;
+    border: 1px solid #d3d3d3;
+}
+
+.options {
+	cursor: pointer;
+	margin-top: 8px;
+}

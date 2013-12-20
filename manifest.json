@@ -1,0 +1,22 @@
+{
+	"name": "IP Geo Location",
+	"version": "1.2",
+	"permissions": [
+		"http://*/*",
+		"https://*/*"
+	],
+	"browser_action": {
+		"default_icon": "images/icon_128.png",
+		"default_title": "IP Geo Location (click to refresh)",
+		"default_popup": "html/popup.html"
+	},
+    "options_page": "html/options.html",
+	"icons": {
+		"128": "images/icon_128.png",
+		"64": "images/icon_64.png",
+		"48": "images/icon_48.png",
+		"32": "images/icon_32.png",
+		"16": "images/icon_16.png"
+	 },
+	"manifest_version": 2
+}

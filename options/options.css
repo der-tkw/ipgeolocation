@@ -1,0 +1,13 @@
+body {
+	margin: 10px;
+	font: 80% Arial, sans-serif;
+}
+
+h1 { 
+	font-size: 150%;
+}
+
+h1 img {
+	margin: 1px 5px 0 1px;
+	vertical-align: middle;
+}

@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+	<head>
+		<title>IP Geo Location Options</title>
+		<script type="text/javascript" src="../js/jquery-2.0.2.min.js"></script>
+		<script type="text/javascript" src="../js/options.js"></script>
+		<link rel="stylesheet" type="text/css" href="../css/global.css">
+		<link rel="stylesheet" type="text/css" href="../css/options.css">
+	</head>
+	<body>
+		<h1>
+			<img src="../images/icon_64.png" alt="IP Geo Location">
+			IP Geo Location Options
+		</h1>
+		<br/>
+		<div>
+			<div>
+				<input type="checkbox" id="showPopupHeader">
+				Show Popup Header
+			</div>
+			<div>
+				<input type="checkbox" id="showMap">
+				Show Location Map
+			</div>
+			<div class="indent mapsub">
+				<input type="checkbox" id="showLatLong">
+				Show Latitude/Longitude
+			</div>
+			<div class="indent mapsub">
+					Map Type
+					<select id="mapType">
+						<option value="roadmap">Road Map</option>
+						<option value="satellite">Satellite</option>
+						<option value="terrain">Terrain</option>
+						<option value="hybrid">Hybrid</option>
+					</select>
+			</div>
+			<div class="indent mapsub">
+					Zoom Level
+					<select id="mapZoom">
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+						<option value="6">6</option>
+						<option value="7">7</option>
+						<option value="8">8</option>
+						<option value="9">9</option>
+						<option value="10">10</option>
+						<option value="11">11</option>
+						<option value="12">12</option>
+						<option value="13">13</option>
+						<option value="14">14</option>
+						<option value="15">15</option>
+						<option value="16">16</option>
+						<option value="17">17</option>
+						<option value="18">18</option>
+						<option value="19">19</option>
+						<option value="20">20</option>
+					</select>
+			</div>
+		</div>
+		<br/>
+		<div id="status">&nbsp;</div>
+		<button id="save">Save</button>
+		<button id="restore">Restore</button>
+	</body>
+</html>

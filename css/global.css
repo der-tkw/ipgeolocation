@@ -1,0 +1,21 @@
+button {
+	display: inline-block;
+	padding: 3px 12px 3px 12px;
+	min-width: 75px;
+	background-image: -webkit-linear-gradient(top, #FAFAFA, #F4F4F4 40%, #E5E5E5);
+	border: 1px solid #AAA;
+	border-radius: 3px;
+	color: #444;
+}
+
+button:hover {
+	background: #EBEBEB -webkit-linear-gradient(#FEFEFE, #F8F8F8 40%, #E9E9E9);
+	border-color: #999;
+	color: #222;
+}
+
+button:active {
+	background-color: #EBEBEB;
+	background-image: -webkit-linear-gradient(top, #F4F4F4, #EFEFEF 40%, gainsboro);
+	border-color: #999;
+}
