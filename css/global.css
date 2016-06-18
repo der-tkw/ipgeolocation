@@ -1,3 +1,7 @@
+html, body, table {
+	font-family: "Open Sans", Arial, "Lucida Grande",sans-serif;
+}
+
 button {
 	display: inline-block;
 	padding: 3px 12px 3px 12px;

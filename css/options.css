@@ -1,6 +1,5 @@
 body {
 	margin: 10px;
-	font: 80% Arial, sans-serif;
 }
 
 h1 { 
@@ -14,6 +13,7 @@ h1 img {
 
 .indent {
 	margin-left: 22px;
+	margin-top: 5px;
 }
 
 #status {

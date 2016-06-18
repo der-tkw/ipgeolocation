@@ -11,7 +11,7 @@ IP Geo Location is a Chrome Extension which you can find and install [here].
 The extension is using a free service to determine your IP ([jsonip.com]) and another free service to fetch geo location data for that IP ([freegeoip.net]). If there seems to be a problem with a specific IP or the resulting location data I can not do anything about it since I'm not in any way affiliated with the services the extension is using.
 
 ### Version
-1.2
+1.3
 
 ### Screenshots
 *Popup*

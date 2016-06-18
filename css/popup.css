@@ -1,33 +1,54 @@
-body, table {
-	font: 90% Arial, sans-serif;
-}
-
-td {
+#content td {
     width: 1px;
     min-width: 75px;
     white-space: nowrap;
 }
 
-img {
+#content img {
 	vertical-align: middle;
 }
 
-h1 { 
+#content h1 { 
 	font-size: 115%;
     white-space: nowrap;
 }
 
-h1 img {
+#content h1 img {
 	margin: 1px 5px 0 1px;
 	border: 0px;
 }
 
-#map img {
+#content #map img {
 	margin-top: 10px;
     border: 1px solid #d3d3d3;
 }
 
-.options {
-	cursor: pointer;
-	margin-top: 8px;
+#loading {
+	background: url(../images/loading.gif) no-repeat center 10%;
+}
+
+#error {
+	background: url(../images/error.png) no-repeat center 10%;
+}
+
+#error span {
+	width: 100px;
+}
+
+#loading span {
+	width: 110px;
+}
+
+#error,
+#loading {
+	font-size: 12px;
+	width: 135px;
+	height: 65px;
+}
+
+#error span,
+#loading span {
+	position: relative;
+	top: 70%;
+	transform: translateY(-50%);
 }

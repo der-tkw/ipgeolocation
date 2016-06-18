@@ -1,13 +1,31 @@
 function unknown() {
-	chrome.browserAction.setIcon({path:'../images/unknown.png'});
+	chrome.browserAction.setIcon({path:'../images/icon_128.png'});
 	update('ip', '-');
 	update('flag', '');
 	update('country', '-');
 	update('latitude', '-');
 	update('longitude', '-');
 	update('map', '');
-	$('*').show();
+	displayUnknown();
+}
+
+function displayUnknown() {
+	$('#content').hide();
+	$('#loading').hide();
+	$('#error').show();
+}
+
+function displayContent() {
+	$('#content').show();
+	$('#loading').hide();
+	$('#error').hide();
 	updateVisibilities();
+}
+
+function displayLoading() {
+	$('#content').hide();
+	$('#loading').show();
+	$('#error').hide();
 }
 
 function updateVisibilities(){
@@ -25,8 +43,8 @@ function update(id, value) {
 }
 
 function updateCountryIcon() {
-	chrome.browserAction.setIcon({path:'../images/loading.png'});
-	$('*').hide();
+	chrome.browserAction.setIcon({path:'../images/icon_128.png'});
+	displayLoading();
 	$.ajax({
 		url: 'http://jsonip.com/',
 		dataType: 'json',
@@ -45,7 +63,7 @@ function updateCountryIcon() {
 					update('flag', '<img src="../images/countries/' + data.country_code.toLowerCase() + '.png"/>');
 					if (JSON.parse(localStorage.showMap)) {
 						var latlng = data.latitude + ',' + data.longitude;
-						var mapurl = 'https://maps.google.com/maps/api/staticmap?center=' + latlng + '&zoom=' + localStorage.mapZoom + '&maptype=' + localStorage.mapType + '&markers=' + latlng + '&size=300x200&sensor=false';
+						var mapurl = 'https://maps.google.com/maps/api/staticmap?center=' + latlng + '&zoom=' + localStorage.mapZoom + '&maptype=' + localStorage.mapType + '&markers=' + latlng + '&size=350x200&sensor=false';
 						update('map', '<img src="' + mapurl + '"/>');
 					} else {
 						update('map', '');
@@ -54,8 +72,7 @@ function updateCountryIcon() {
 						update('latitude', data.latitude);
 						update('longitude', data.longitude);
 					} 
-					$('*').show();
-					updateVisibilities();
+					displayContent();
 				},
 				error: unknown
 			});
@@ -78,5 +95,4 @@ window.addEventListener('load', function() {
 	init('mapZoom', '8');
 	init('mapType', 'hybrid');
 	updateCountryIcon();
-	document.querySelector('#options').addEventListener('click', function() { chrome.tabs.create({url: "html/options.html"}); });	
 });
