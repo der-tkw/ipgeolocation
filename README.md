@@ -18,9 +18,11 @@ The extension is using a free service to determine your IP ([jsonip.com]) and an
 
 ### Screenshots
 *Popup*
+
 ![Popup][screenshot_popup]
 
 *Options*
+
 ![Options][screenshot_options]
 
 [here]:https://chrome.google.com/webstore/detail/ip-geo-location/bbhilcamdnlfkhcdecflcbaaecjbngoi
