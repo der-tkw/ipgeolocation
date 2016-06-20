@@ -1,78 +1,79 @@
-function updateStatus(msg) {
-	var status = document.getElementById('status');
-	status.innerHTML = msg;
-	window.setTimeout(function() {
-		status.innerHTML = '&nbsp;';
-	}, 2000);
-}
+function save_options() {
+	var silentMode = document.getElementById('silentMode').checked;
+	var refreshInterval = document.getElementById('refreshInterval').value;
+	var showNotifications = document.getElementById('showNotifications').checked;
+	var showPopupHeader = document.getElementById('showPopupHeader').checked;
+	var showMap = document.getElementById('showMap').checked;
+	var showLatLong = document.getElementById('showLatLong').checked;
+	var mapType = document.getElementById('mapType').value;
+	var mapZoom = document.getElementById('mapZoom').value;
 
-function save() {
-	saveCheckbox('showMap');
-	saveCheckbox('showPopupHeader');
-	saveCheckbox('showLatLong');
-	saveSelect('mapType');
-	saveSelect('mapZoom');
-	updateStatus('Options saved.');
-}
+	chrome.storage.sync.set({
+		silentMode: silentMode,
+		refreshInterval: refreshInterval,
+		showNotifications: showNotifications,
+		showPopupHeader: showPopupHeader,
+		showMap: showMap,
+		showLatLong: showLatLong,
+		mapType: mapType,
+		mapZoom: mapZoom
+	}, function() {
+		var status = document.getElementById('status');
+		status.textContent = 'Options saved.';
+		setTimeout(function() {
+			status.textContent = '';
+		}, 1500);
+	});
 
-function saveSelect(id) {
-	var select = document.getElementById(id);
-	var value = select.children[select.selectedIndex].value;
-	localStorage[id] = value;
-}
-
-function saveCheckbox(id) {
-	var checkbox = document.getElementById(id);
-	var value = checkbox.checked;
-	localStorage[id] = value;
-}
-
-function restore() {
-	restoreCheckbox('showMap');
-	restoreCheckbox('showPopupHeader');
-	restoreCheckbox('showLatLong');
-	restoreSelect('mapType');
-	restoreSelect('mapZoom');
-}
-
-function restoreSelect(id) {
-	var stored = localStorage[id];
-	if (!stored) {
-		// nothing to restore
-    	return;
-	}
-	var select = document.getElementById(id);
-	for (var i = 0; i < select.children.length; i++) {
-    	var child = select.children[i];
-		if (child.value == stored) {
-			child.selected = 'true';
-			break;
-		}
+	if (refreshInterval != '-1') {
+		chrome.alarms.clear('ipgeolocationalarm');
+		chrome.alarms.create('ipgeolocationalarm', {periodInMinutes: parseFloat(refreshInterval)});
+	} else {
+		chrome.alarms.clear('ipgeolocationalarm');
 	}
 }
 
-function restoreCheckbox(id) {
-	var stored = localStorage[id];
-	if (!stored) {
-		// nothing to restore
-    	return;
-	}
-	var checkbox = document.getElementById(id);
-	checkbox.checked = JSON.parse(stored);
+function restore_options() {
+	chrome.storage.sync.get({
+		silentMode: false,
+		refreshInterval: '-1',
+		showNotifications: true,
+		showPopupHeader: true,
+		showMap: true,
+		showLatLong: false,
+		mapType: 'hybrid',
+		mapZoom: '8'
+	}, function(items) {
+		document.getElementById('silentMode').checked = items.silentMode;
+		document.getElementById('refreshInterval').value = items.refreshInterval;
+		document.getElementById('showNotifications').checked = items.showNotifications;
+		document.getElementById('showPopupHeader').checked = items.showPopupHeader;
+		document.getElementById('showMap').checked = items.showMap;
+		document.getElementById('showLatLong').checked = items.showLatLong;
+		document.getElementById('mapType').value = items.mapType;
+		document.getElementById('mapZoom').value = items.mapZoom;
+		handleUiSettings(items.silentMode);
+		handleMapSettings(items.showMap);
+	});
 }
 
-function handleMapCheckbox() {
-	var checkbox = document.getElementById('showMap');
-	$('.mapsub :input').prop('disabled', !checkbox.checked);
-	if (!checkbox.checked) {
-		document.getElementById('showLatLong').checked = false;
+function handleUiSettings() {
+	toggleState('uiSettings', !document.getElementById('silentMode').checked);
+	handleMapSettings();
+}
+
+function handleMapSettings() {
+	toggleState('mapSettings', document.getElementById('showMap').checked);
+}
+
+function toggleState(parent, val) {
+	var nodes = document.getElementById(parent).getElementsByTagName('*');
+	for(var i = 0; i < nodes.length; i++){
+		nodes[i].disabled = !val;
 	}
 }
 
-window.addEventListener('load', function() {
-	restore();
-	handleMapCheckbox();
-	document.querySelector('#save').addEventListener('click', save);
-	document.querySelector('#restore').addEventListener('click', restore);
-	document.querySelector('#showMap').addEventListener('change', handleMapCheckbox);
-});
+document.addEventListener('DOMContentLoaded', restore_options);
+document.getElementById('save').addEventListener('click', save_options);
+document.getElementById('showMap').addEventListener('change', handleMapSettings);
+document.getElementById('silentMode').addEventListener('change', handleUiSettings);

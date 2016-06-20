@@ -1,42 +1,69 @@
 <!doctype html>
 <html>
-	<head>
-		<title>IP Geo Location Options</title>
-		<script type="text/javascript" src="../js/jquery-2.0.2.min.js"></script>
-		<script type="text/javascript" src="../js/options.js"></script>
-		<link rel="stylesheet" type="text/css" href="../css/global.css">
-		<link rel="stylesheet" type="text/css" href="../css/options.css">
-	</head>
-	<body>
-		<h1>
-			<img src="../images/icon_64.png" alt="IP Geo Location">
-			IP Geo Location Options
-		</h1>
-		<br/>
-		<div>
-			<div>
+<head>
+	<title>IP Geo Location Options</title>
+	<link rel="stylesheet" type="text/css" href="../css/options.css">
+</head>
+<body>
+	<div class="checkbox">
+		<label>
+			<input type="checkbox" id="silentMode">
+			<span>Silent Mode</span>
+		</label>
+	</div>
+	<div>
+		<label>
+			<span>Auto Refresh Interval</span>
+			<select id="refreshInterval">
+				<option value="-1">No Auto Refresh</option>
+				<option value="5">5 Minutes</option>
+				<option value="10">10 Minutes</option>
+				<option value="15">15 Minutes</option>
+				<option value="30">30 Minutes</option>
+				<option value="60">60 Minutes</option>
+			</select>
+		</label>
+	</div>
+	<div class="checkbox">
+		<label>
+			<input type="checkbox" id="showNotifications">
+			<span>Display Notifications</span>
+		</label>
+	</div>
+	<div id="uiSettings">
+		<div class="checkbox">
+			<label>
 				<input type="checkbox" id="showPopupHeader">
-				Display Popup Header
-			</div>
-			<div>
+				<span>Display Popup Header</span>
+			</label>
+		</div>
+		<div class="checkbox">
+			<label>
 				<input type="checkbox" id="showMap">
-				Display Location Map
+				<span>Display Location Map</span>
+			</label>
+		</div>
+		<div id="mapSettings">
+			<div class="checkbox indent">
+				<label>
+					<input type="checkbox" id="showLatLong">
+					<span>Display Latitude/Longitude</span>
+				</label>
 			</div>
-			<div class="indent mapsub">
-				<input type="checkbox" id="showLatLong">
-				Display Latitude/Longitude
-			</div>
-			<div class="indent mapsub">
-					Map Type
+			<div class="indent">
+				<label>
+					<span>Map Type</span>
 					<select id="mapType">
 						<option value="roadmap">Road Map</option>
 						<option value="satellite">Satellite</option>
 						<option value="terrain">Terrain</option>
 						<option value="hybrid">Hybrid</option>
 					</select>
+				</label>
 			</div>
-			<div class="indent mapsub">
-					Zoom Level
+			<div class="indent">
+				<label>
+					<span>Zoom Level</span>
 					<select id="mapZoom">
 						<option value="1">1</option>
 						<option value="2">2</option>
@@ -59,11 +86,14 @@
 						<option value="19">19</option>
 						<option value="20">20</option>
 					</select>
+				</label>
 			</div>
 		</div>
-		<br/>
-		<div id="status">&nbsp;</div>
-		<button id="save">Save</button>
-		<button id="restore">Restore</button>
-	</body>
+	</div>
+	<br/>
+	<button id="save">Save</button>
+	<div style="display: inline-block;" id="status"> </div>
+
+	<script src="../js/options.js"></script>
+</body>
 </html>

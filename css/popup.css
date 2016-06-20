@@ -27,26 +27,16 @@
 	background: url(../images/loading.gif) no-repeat center 10%;
 }
 
-#error {
-	background: url(../images/error.png) no-repeat center 10%;
-}
-
-#error span {
-	width: 100px;
-}
-
 #loading span {
 	width: 110px;
 }
 
-#error,
 #loading {
 	font-size: 12px;
 	width: 135px;
 	height: 65px;
 }
 
-#error span,
 #loading span {
 	position: relative;
 	top: 70%;
