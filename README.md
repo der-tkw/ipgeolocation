@@ -16,17 +16,6 @@ The extension is using a free service to determine your IP ([ipify.org]) and ano
 ### Version
 1.5
 
-### Screenshots
-*Popup*
-
-![Popup][screenshot_popup]
-
-*Options*
-
-![Options][screenshot_options]
-
 [here]:https://chrome.google.com/webstore/detail/ip-geo-location/bbhilcamdnlfkhcdecflcbaaecjbngoi
 [ipify.org]:http://ipify.org/
 [freegeoip.net]:http://freegeoip.net/
-[screenshot_options]:https://www.dropbox.com/s/0jipxvyfedcct0c/options%201.4.png
-[screenshot_popup]:https://www.dropbox.com/s/i98eoikoa90jpo1/screenshot%201.4.png
