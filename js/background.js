@@ -29,7 +29,7 @@ function processSilent(response) {	if (response.success) {
 
 function process(response) {
 	$.ajax({
-		url: 'http://jsonip.com/',
+		url: 'http://api.ipify.org?format=json',
 		dataType: 'json',
 		cache: false,
 		timeout: 5000,
