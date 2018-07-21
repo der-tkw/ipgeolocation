@@ -24,20 +24,20 @@ function process() {
 
 function success(data) {
 	chrome.storage.sync.get(null, function(settings) {
-		chrome.browserAction.setIcon({path:'../images/countries/' + data.country_code.toLowerCase() + '.png'});
+		chrome.browserAction.setIcon({path:'../images/countries/' + data.country.toLowerCase() + '.png'});
 		update('ip', data.ip);
-		update('country', data.country_name);
-		update('flag', '<img src="../images/countries/' + data.country_code.toLowerCase() + '.png"/>');
+		update('country', JSON.parse(countries)[0][data.country]);
+		update('city', data.city + ", " + data.region);
+		update('flag', '<img src="../images/countries/' + data.country.toLowerCase() + '.png"/>');
 		if (settings.showMap) {
-			var latlng = data.latitude + ',' + data.longitude;
-			var mapurl = 'https://maps.google.com/maps/api/staticmap?center=' + latlng + '&zoom=' + settings.mapZoom + '&maptype=' + settings.mapType + '&markers=' + latlng + '&size=350x200&sensor=false';
+			var mapurl = 'https://maps.google.com/maps/api/staticmap?center=' + data.loc + '&zoom=' + settings.mapZoom + '&maptype=' + settings.mapType + '&markers=' + data.loc + '&size=350x200&sensor=false';
 			update('map', '<img src="' + mapurl + '"/>');
 		} else {
 			update('map', '');
 		} 
 		if (settings.showLatLong) {
-			update('latitude', data.latitude);
-			update('longitude', data.longitude);
+			update('latitude', data.loc.split(',')[0]);
+			update('longitude', data.loc.split(',')[1]);
 		}
 		displayContent();
 		displayNotification('Location has been updated successfully!');
@@ -49,6 +49,7 @@ function error() {
 	update('ip', '-');
 	update('flag', '');
 	update('country', '-');
+	update('city', '-');
 	update('latitude', '-');
 	update('longitude', '-');
 	update('map', '');

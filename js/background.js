@@ -18,8 +18,9 @@ chrome.alarms.onAlarm.addListener(function(alarm) {
 	return process(processSilent);
 });
 
-function processSilent(response) {	if (response.success) {
-		chrome.browserAction.setIcon({path:'../images/countries/' + response.result.country_code.toLowerCase() + '.png'});
+function processSilent(response) {
+	if (response.success) {
+		chrome.browserAction.setIcon({path:'../images/countries/' + response.result.country.toLowerCase() + '.png'});
 		displayNotification('Location has been updated successfully!');
 	} else {
 		chrome.browserAction.setIcon({path:'../images/icon_128.png'});
@@ -29,23 +30,12 @@ function processSilent(response) {	if (response.success) {
 
 function process(response) {
 	$.ajax({
-		url: 'http://api.ipify.org?format=json',
+		url: 'https://ipinfo.io/geo',
 		dataType: 'json',
 		cache: false,
 		timeout: 5000,
 		success: function(data) {
-			$.ajax({
-				url: 'http://freegeoip.net/json/' + data.ip,
-				dataType: 'json',
-				cache: false,
-				timeout: 5000,
-				success: function(data) {
-					response({success: true, result: data});
-				},
-				error: function(data) {
-					response({success: false, result: data});
-				}
-			});
+			response({success: true, result: data});
 		},
 		error: function(data) {
 			response({success: false, result: data});

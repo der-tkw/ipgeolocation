@@ -1,6 +1,7 @@
 {
 	"name": "IP Geo Location",
-	"version": "1.5",
+	"version": "1.6",
+	"description": "Displays your current IP and geo location data.",
 	"permissions": ["storage", "alarms", "notifications"],
 	"browser_action": {
 		"default_icon": "images/icon_128.png",
