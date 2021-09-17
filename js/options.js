@@ -5,7 +5,6 @@ function save_options() {
 	var showPopupHeader = document.getElementById('showPopupHeader').checked;
 	var showMap = document.getElementById('showMap').checked;
 	var showLatLong = document.getElementById('showLatLong').checked;
-	var mapType = document.getElementById('mapType').value;
 	var mapZoom = document.getElementById('mapZoom').value;
 
 	chrome.storage.sync.set({
@@ -15,7 +14,6 @@ function save_options() {
 		showPopupHeader: showPopupHeader,
 		showMap: showMap,
 		showLatLong: showLatLong,
-		mapType: mapType,
 		mapZoom: mapZoom
 	}, function() {
 		var status = document.getElementById('status');
@@ -41,7 +39,6 @@ function restore_options() {
 		showPopupHeader: true,
 		showMap: true,
 		showLatLong: false,
-		mapType: 'hybrid',
 		mapZoom: '8'
 	}, function(items) {
 		document.getElementById('silentMode').checked = items.silentMode;
@@ -50,7 +47,6 @@ function restore_options() {
 		document.getElementById('showPopupHeader').checked = items.showPopupHeader;
 		document.getElementById('showMap').checked = items.showMap;
 		document.getElementById('showLatLong').checked = items.showLatLong;
-		document.getElementById('mapType').value = items.mapType;
 		document.getElementById('mapZoom').value = items.mapZoom;
 		handleUiSettings(items.silentMode);
 		handleMapSettings(items.showMap);

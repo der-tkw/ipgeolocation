@@ -18,9 +18,8 @@
 	border: 0px;
 }
 
-#content #map img {
+#content #map {
 	margin-top: 10px;
-    border: 1px solid #d3d3d3;
 }
 
 #loading {
@@ -41,4 +40,11 @@
 	position: relative;
 	top: 70%;
 	transform: translateY(-50%);
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #2b2b2b;
+        color: #d3d3d3;
+    }
 }

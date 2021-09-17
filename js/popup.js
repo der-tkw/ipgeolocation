@@ -29,15 +29,58 @@ function success(data) {
 		update('country', JSON.parse(countries)[0][data.country]);
 		update('city', data.city + ", " + data.region);
 		update('flag', '<img src="../images/countries/' + data.country.toLowerCase() + '.png"/>');
+
+		var lat = data.loc.split(',')[0];
+		var lon = data.loc.split(',')[1];
 		if (settings.showMap) {
-			var mapurl = 'https://maps.google.com/maps/api/staticmap?center=' + data.loc + '&zoom=' + settings.mapZoom + '&maptype=' + settings.mapType + '&markers=' + data.loc + '&size=350x200&sensor=false';
-			update('map', '<img src="' + mapurl + '"/>');
+			$('#map').css('height', '350px');
+			$('#map').css('width', '400px');
+			$('#map').css('border', '1px solid #d3d3d3');
+
+			var map = new ol.Map({
+				target: 'map',
+				layers: [
+					new ol.layer.Tile({
+						source: new ol.source.OSM()
+					})
+				],
+				controls: ol.control.defaults({
+					rotation: false
+				}),
+				view: new ol.View({
+					center: ol.proj.fromLonLat([lon, lat]),
+					zoom: settings.mapZoom,
+					maxZoom: 20
+				})
+			});
+
+			var pin = new ol.Feature({
+				 geometry: new ol.geom.Point(ol.proj.fromLonLat([lon, lat]))
+			});
+
+			pin.setStyle(
+				new ol.style.Style({
+					image: new ol.style.Icon({
+					src: '../images/pin.png',
+					scale: 0.05,
+					}),
+				})
+			);
+
+			var layer = new ol.layer.Vector({
+				 source: new ol.source.Vector({
+					 features: [
+						pin
+					]
+				})
+			});
+			map.addLayer(layer);
 		} else {
 			update('map', '');
-		} 
+		}
 		if (settings.showLatLong) {
-			update('latitude', data.loc.split(',')[0]);
-			update('longitude', data.loc.split(',')[1]);
+			update('latitude', lat);
+			update('longitude', lon);
 		}
 		displayContent();
 		displayNotification('Location has been updated successfully!');
