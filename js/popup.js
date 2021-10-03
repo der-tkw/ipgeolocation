@@ -1,5 +1,5 @@
 function process() {
-	chrome.browserAction.setIcon({path:'../images/icon_128.png'});
+	chrome.action.setIcon({path:'../images/icon_128.png'});
 
 	chrome.storage.sync.get(null, function(settings) {
 		if (settings.silentMode) {
@@ -24,7 +24,7 @@ function process() {
 
 function success(data) {
 	chrome.storage.sync.get(null, function(settings) {
-		chrome.browserAction.setIcon({path:'../images/countries/' + data.country.toLowerCase() + '.png'});
+		chrome.action.setIcon({path:'../images/countries/' + data.country.toLowerCase() + '.png'});
 		update('ip', data.ip);
 		update('country', JSON.parse(countries)[0][data.country]);
 		update('city', data.city + ", " + data.region);
@@ -89,7 +89,7 @@ function success(data) {
 }
 
 function error() {
-	chrome.browserAction.setIcon({path:'../images/icon_128.png'});
+	chrome.action.setIcon({path:'../images/icon_128.png'});
 	update('ip', '-');
 	update('flag', '');
 	update('country', '-');

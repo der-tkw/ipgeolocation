@@ -3,6 +3,10 @@
 	margin-top: 5px;
 }
 
+div {
+	margin-top: 10px;
+}
+
 #status {
 	color: green;
 	display: block;

@@ -20,10 +20,10 @@ chrome.alarms.onAlarm.addListener(function(alarm) {
 
 function processSilent(response) {
 	if (response.success) {
-		chrome.browserAction.setIcon({path:'../images/countries/' + response.result.country.toLowerCase() + '.png'});
+		chrome.action.setIcon({path:'../images/countries/' + response.result.country.toLowerCase() + '.png'});
 		displayNotification('Location has been updated successfully!');
 	} else {
-		chrome.browserAction.setIcon({path:'../images/icon_128.png'});
+		chrome.action.setIcon({path:'../images/icon_128.png'});
 		displayNotification('Failed to update location. Please try again!');
 	}
 }

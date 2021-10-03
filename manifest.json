@@ -3,17 +3,16 @@
 	"version": "1.7.1",
 	"description": "Displays your current IP and geo location data.",
 	"permissions": ["storage", "alarms", "notifications"],
-	"browser_action": {
+	"action": {
 		"default_icon": "images/icon_128.png",
 		"default_title": "IP Geo Location (click to refresh)",
 		"default_popup": "html/popup.html"
 	},
 	"options_ui": {
-		"page": "html/options.html",
-		"chrome_style": true
+		"page": "html/options.html"
 	},
 	"background": {
-		"scripts": ["js/background.js"]
+		"service_worker": "js/background.js"
 	},
 	"icons": {
 		"128": "images/icon_128.png",
@@ -22,5 +21,5 @@
 		"32": "images/icon_32.png",
 		"16": "images/icon_16.png"
 	 },
-	"manifest_version": 2
+	"manifest_version": 3
 }
