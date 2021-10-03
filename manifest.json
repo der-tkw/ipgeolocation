@@ -1,6 +1,6 @@
 {
 	"name": "IP Geo Location",
-	"version": "1.7",
+	"version": "1.7.1",
 	"description": "Displays your current IP and geo location data.",
 	"permissions": ["storage", "alarms", "notifications"],
 	"browser_action": {
@@ -13,7 +13,7 @@
 		"chrome_style": true
 	},
 	"background": {
-		"scripts": ["js/jquery-2.2.4.min.js", "js/background.js"]
+		"scripts": ["js/background.js"]
 	},
 	"icons": {
 		"128": "images/icon_128.png",

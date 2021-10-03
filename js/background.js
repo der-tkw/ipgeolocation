@@ -29,18 +29,10 @@ function processSilent(response) {
 }
 
 function process(response) {
-	$.ajax({
-		url: 'https://ipinfo.io/geo',
-		dataType: 'json',
-		cache: false,
-		timeout: 5000,
-		success: function(data) {
-			response({success: true, result: data});
-		},
-		error: function(data) {
-			response({success: false, result: data});
-		}
-	});
+    fetch('https://ipinfo.io/geo', {cache: "no-store"})
+        .then(response => response.json())
+        .then(data => response({success: true, result: data}))
+        .catch(error => response({success: false}));
 	return true;
 }
 
